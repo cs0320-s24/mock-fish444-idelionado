@@ -17,6 +17,8 @@ export default function REPL() {
   // CHANGED
   const [history, setHistory] = useState<string[]>([])
 
+  const [mode, setMode] = useState<Boolean>(true)
+
   return (
     <div className="repl">  
       {/*This is where your REPLHistory might go... You also may choose to add it within your REPLInput 
@@ -24,7 +26,7 @@ export default function REPL() {
       <REPLHistory history={history}/>
       <hr></hr>
       {/* CHANGED */}
-      <REPLInput history={history} setHistory={setHistory}/>
+      <REPLInput mode={true} history={history} setHistory={setHistory}/>
     </div>
   );
 }
