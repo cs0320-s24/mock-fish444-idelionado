@@ -21,6 +21,7 @@ export function REPLInput(props : REPLInputProps) {
     function handleSubmit(commandString:string) {
       setCount(count+1)
       // CHANGED
+      
       props.setHistory([...props.history, commandString])
       setCommandString('')
     }
