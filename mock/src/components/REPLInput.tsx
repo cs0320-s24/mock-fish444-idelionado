@@ -22,15 +22,6 @@ export function REPLInput(props : REPLInputProps) {
 
     const [mode, setMode] = useState<Boolean>(true);
 
-    function displayLoad () {
-      const loadWorked = "successfully loaded";
-      return (
-        <div>
-          <h4>{loadWorked}</h4>
-        </div>
-      );
-    }
-
     
     // This function is triggered when the button is clicked.
     function handleSubmit(commandString:string) {
@@ -39,16 +30,17 @@ export function REPLInput(props : REPLInputProps) {
       setCount(count+1);
 
       if ((commandString === "mode")) {
+        console.log("test")
         const newMode = !props.mode
         setMode(newMode)
         setCommandString('')
         return newMode
-      } if (commandString === "load_file") {
-        displayLoad;
-        setCommandString('')
+      } else if (commandString === "load_file") {
+        console.log("test")
+        props.setHistory([...props.history,  "successfully loaded"])
 
       } else {
-          props.setHistory([...props.history, commandString])
+          props.setHistory([...props.history,  commandString])
           setCommandString('')
       }
         
