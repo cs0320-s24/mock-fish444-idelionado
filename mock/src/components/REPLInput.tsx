@@ -30,19 +30,28 @@ export function REPLInput(props : REPLInputProps) {
       // handle if statement for mode
       setCount(count+1);
 
-      if ((commandString === "mode")) {
+      let arr = commandString.split(' ');
+
+      //commandString.split(/(\s+)/)
+
+
+      //commandString === "mode"
+      //commandString === "load_file"
+
+      if ((arr[0] === "mode")) {
         console.log("test")
         const newMode = !props.mode
         setMode(newMode)
         setCommandString('')
         return newMode
-      } else if (commandString === "load_file") {
+      } else if (arr[0] === "load_file") {
         console.log("test")
         props.setHistory([...props.history,  "successfully loaded"])
 
-      }else if(commandString == "view"){
-        props.setHistory([...props.history, mockView("data/data1.csv")])
+      }else if(arr[0] == "view"){
+        props.setHistory([...props.history, mockView(arr[1])])
 
+        //mockView("data/data1.csv")
         //mockView(commandString)
         //splice 
       
