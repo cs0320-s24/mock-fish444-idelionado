@@ -1,4 +1,4 @@
-export function mockView(loadedData: string){
+export function mockView(data: string){
   const map = new Map<string, any>();
   const data1 = [
     ["Name", "Age", "Major"],
@@ -25,12 +25,12 @@ export function mockView(loadedData: string){
   map.set("data/data2.csv", data2);
   map.set("data/data3.csv", data3);
   map.set("data/data4.csv", data4);
-  map.set("data/data5.csv", "Empty CSV");
+  map.set("data/data5.csv", "Empty file");
 
-  if(loadedData === null){
+  if(data === null){
     return "Error: No file loaded";
   } else {
-    const result = map.get(loadedData);
+    const result = map.get(data);
     return result;
   }
   

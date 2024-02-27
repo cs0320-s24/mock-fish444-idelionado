@@ -14,4 +14,5 @@ export function REPLHistory(props : REPLHistoryProps) {
             {props.history.map((command, index) => <p>{command}</p>)}
         </div>
     );
+
 }

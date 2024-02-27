@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import '../styles/main.css';
 import { ControlledInput } from './ControlledInput';
+import{ mockView } from './MockView';
 
 interface REPLInputProps{
   // TODO: Fill this with desired props... Maybe something to keep track of the submitted commands
@@ -38,6 +39,13 @@ export function REPLInput(props : REPLInputProps) {
       } else if (commandString === "load_file") {
         console.log("test")
         props.setHistory([...props.history,  "successfully loaded"])
+
+      }else if(commandString == "view"){
+        props.setHistory([...props.history, mockView("data/data1.csv")])
+
+        //mockView(commandString)
+        //splice 
+      
 
       } else {
           props.setHistory([...props.history,  commandString])

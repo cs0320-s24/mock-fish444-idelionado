@@ -3,6 +3,7 @@ import '../styles/main.css';
 import { REPLHistory } from './REPLHistory';
 import { REPLInput } from './REPLInput';
 
+
 /* 
   You'll want to expand this component (and others) for the sprints! Remember 
   that you can pass "props" as function arguments. If you need to handle state 
@@ -18,6 +19,7 @@ export default function REPL() {
   const [history, setHistory] = useState<string[]>([])
 
   const [mode, setMode] = useState<Boolean>(true)
+  
 
   return (
     <div className="repl">  
@@ -27,6 +29,7 @@ export default function REPL() {
       <hr></hr>
       {/* CHANGED */}
       <REPLInput mode={true} history={history} setHistory={setHistory}/>
+
     </div>
   );
 }
