@@ -8,9 +8,9 @@ const CommandHandler = () -> {
     handleCommand
     addCommand
 
-}
+} //may not need
 
-function handleCommand(commandMap, commandName, args){
+function handleCommand(commandMap: Map<string, REPLFunction>, commandName: string, args: Array<string>){
     const commandFunction = commandMap.get(commandName);
     if(commandFunction){
         return commandFunction(args);
@@ -19,7 +19,7 @@ function handleCommand(commandMap, commandName, args){
     }
 }
 
-function addCommand(commandMap, commandName, commandFunction){
+function addCommand(commandMap: Map<string, REPLFunction>, commandName: string, commandFunction: REPLFunction){
     commandMap.add(commandName,commandFunction);
 }
 
