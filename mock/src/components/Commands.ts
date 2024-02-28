@@ -20,7 +20,7 @@ function handleCommand(commandMap: Map<string, REPLFunction>, commandName: strin
 }
 
 function addCommand(commandMap: Map<string, REPLFunction>, commandName: string, commandFunction: REPLFunction){
-    commandMap.add(commandName,commandFunction);
+    commandMap.set(commandName,commandFunction);
 }
 
 export{CommandHandler}
