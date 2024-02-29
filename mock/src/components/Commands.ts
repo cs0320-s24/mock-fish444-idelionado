@@ -2,15 +2,8 @@ import { REPLFunction } from "./REPLFunction";
 
 
 const commandMap = new Map<string, REPLFunction>();
-const commandName : string
 
-const CommandHandler = () -> {
-    handleCommand
-    addCommand
-
-} //may not need
-
-function handleCommand(commandMap: Map<string, REPLFunction>, commandName: string, args: Array<string>){
+export function handleCommand(commandName: string, args: Array<string>){
     const commandFunction = commandMap.get(commandName);
     if(commandFunction){
         return commandFunction(args);
@@ -19,8 +12,10 @@ function handleCommand(commandMap: Map<string, REPLFunction>, commandName: strin
     }
 }
 
-function addCommand(commandMap: Map<string, REPLFunction>, commandName: string, commandFunction: REPLFunction){
-    commandMap.set(commandName,commandFunction);
+export function addCommand(name: string, commandFunction: REPLFunction){
+    commandMap.set(name,commandFunction);
 }
 
-export{CommandHandler}
+//might need a return type 
+//export{CommandHandler}
+
