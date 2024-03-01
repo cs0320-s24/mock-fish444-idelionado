@@ -56,11 +56,21 @@ test('after I type into the input box, its text changes', async ({ page }) => {
 });
 
 test('on page load, i see a button', async ({ page }) => {
+  await page.goto('http://localhost:8000/');
+  await expect(page.getByLabel('Sign Out')).not.toBeVisible()
+  await expect(page.getByLabel('Command input')).not.toBeVisible()
+
+  await await expect(page.getByRole('button', {name: 'Submitted 0 times'})).toBeVisible()
+
   // TODO WITH TA: Fill this in!
 });
 
 test('after I click the button, its label increments', async ({ page }) => {
-  // TODO WITH TA: Fill this in to test your button counter functionality!
+  await page.goto('http://localhost:8000/');
+  await page.getByLabel('Login').click();
+  await expect(page.getByRole('button', {name: 'Submitted 0 times'})).toBeVisible()
+  await page.getByRole('button', {name: 'Submitted 0 times'}).click()
+  await expect(page.getByRole('button', {name: 'Submitted 1 times'})).toBeVisible()
 });
 
 test('after I click the button, my command gets pushed', async ({ page }) => {
