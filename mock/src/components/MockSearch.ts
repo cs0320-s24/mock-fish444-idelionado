@@ -34,8 +34,7 @@ export function mockView(data: string, column: string, value: string){
    // return result;
 
   const header = result[0];
-  const index = isNaN(Number(column)) ? header.indexOf(column): 
-  Number(column);
+  const index = isNaN(Number(column)) ? header.indexOf(column): Number(column);
 
   const matching = result.slice(1).filter(row => row[index] == value);
 
