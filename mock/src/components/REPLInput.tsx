@@ -11,7 +11,6 @@ interface REPLInputProps{
   //brief is true
   mode: true
 
-  holdURL: string
 
   
 }
@@ -62,9 +61,9 @@ export function REPLInput(props : REPLInputProps) {
       }else if(arr[0] == "view") {
         if (arr.length == 1) {
           console.log("array is length 1")
-          if (props.holdURL != "") {
+          if (holdURL != "") {
             console.log("does just view work")
-            console.log(props.holdURL)
+            console.log(holdURL)
             props.setHistory([...props.history, mockView(holdURL)])
             setCommandString('')
           } else {
@@ -72,7 +71,7 @@ export function REPLInput(props : REPLInputProps) {
           }
           }
 
-        if (arr[1] != props.holdURL) {
+        if (arr[1] != holdURL) {
           console.log("does this print")
           console.log(arr[1])
           props.setHistory([...props.history, mockView(arr[1])])

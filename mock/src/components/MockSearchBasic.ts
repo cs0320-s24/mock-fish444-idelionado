@@ -1,4 +1,4 @@
-export function mockView(data: string, value: string){
+export function mockView(data: string, column: string, value: string){
   const map = new Map<string, any>();
   const data1 = [
     ["Name", "Age", "Major"],
@@ -17,11 +17,14 @@ export function mockView(data: string, value: string){
 
   ];
 
-  
+
 
   const data3 = [["the", "sky", "is", "blue"]];
   const data4 = [["it"], ["is"], ["cold"], ["outside"]];
   const data5 = [[]];
+
+  const value1 = ["Tom", "21", "English"]
+  const value2 = ["cherries", "red", "$3.00"]
 
   map.set("data/data1.csv", data1);
   map.set("data/data2.csv", data2);
@@ -29,12 +32,15 @@ export function mockView(data: string, value: string){
   map.set("data/data4.csv", data4);
   map.set("data/data5.csv", "Empty file");
 
-  if(data === null){
+  if(data === null && column === null && value === null) {
     return "Error: No file loaded";
   } else {
-    const result = map.get(data);
+    
+  }
+  
+  //const result = map.get(data);
    // return result;
 
   
-}
+
 }
