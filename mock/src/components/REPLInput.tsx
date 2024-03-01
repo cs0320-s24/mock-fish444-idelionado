@@ -10,6 +10,9 @@ interface REPLInputProps{
   setHistory: Dispatch<SetStateAction<string[]>>,
   //brief is true
   mode: true
+
+  holdURL: string
+
   
 }
 // You can use a custom interface or explicit fields or both! An alternative to the current function header might be:
@@ -22,6 +25,8 @@ export function REPLInput(props : REPLInputProps) {
     const [count, setCount] = useState<number>(0);
 
     const [mode, setMode] = useState<Boolean>(true);
+
+    const [holdURL, setHoldURL] = useState<string>('');
 
     
     // This function is triggered when the button is clicked.
@@ -45,11 +50,46 @@ export function REPLInput(props : REPLInputProps) {
         setCommandString('')
         return newMode
       } else if (arr[0] === "load_file") {
-        console.log("test")
+        //props.holdURL = arr[1]
+        const newHoldURL = arr[1]
+        setHoldURL(newHoldURL)
+        //setHoldURL(props.holdURL = arr[1])
+        console.log("test load")
+        console.log(holdURL)
         props.setHistory([...props.history,  "successfully loaded"])
+        setCommandString('')
 
-      }else if(arr[0] == "view"){
-        props.setHistory([...props.history, mockView(arr[1])])
+      }else if(arr[0] == "view") {
+        if (arr.length == 1) {
+          console.log("array is length 1")
+          if (props.holdURL != "") {
+            console.log("does just view work")
+            console.log(props.holdURL)
+            props.setHistory([...props.history, mockView(holdURL)])
+            setCommandString('')
+          } else {
+            props.setHistory([...props.history, mockView("Did not load CSV")])
+          }
+          }
+
+        if (arr[1] != props.holdURL) {
+          console.log("does this print")
+          console.log(arr[1])
+          props.setHistory([...props.history, mockView(arr[1])])
+          //props.setHistory([...props.history, "doea view work"])
+          setCommandString('')
+        } else {
+          console.log("should print url2")
+          props.setHistory([...props.history, mockView(holdURL)])
+          setCommandString('')
+
+        }
+        
+      
+      //else if(arr[0] == "view"){
+        //props.setHistory([...props.history, mockView(arr[1])])
+        //setCommandString('')
+
 
         //mockView("data/data1.csv")
         //mockView(commandString)

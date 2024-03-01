@@ -8,6 +8,8 @@ export function mockView(data: string){
 
   ];
 
+  //just make a couple exmaples of rows to print
+
   const data2 = [
     ["Fruit", "Color", "Price"],
     ["lemon", "yellow", "$1.50"],
