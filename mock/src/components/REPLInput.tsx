@@ -64,24 +64,65 @@ export function REPLInput(props : REPLInputProps) {
     addCommand("view", viewHandler)
 
     
-    
-
-    
+    /** 
     function searchHandler (args: Array<string>) : String | String[][] {
-      //const stringArr1 = arr[1].toString
-      //const stringArr2 = arr[2].toString
+      const stringArr1 = arr[1].toString
+      const stringArr2 = arr[2].toString
       
-      if ((args[1] === "2") && args[2] === "English") {
-        props.setHistory([...props.history, mockSearch(args[1], args[2])])
+       if ((args[1] === "2") && args[2] === "English") {
+        props.setHistory([...props.history, mockSearch(args[1]!, args[2]!)])
         setCommandString('')
-      }
+       }
       return ''
       
  
     }
-    addCommand("view", searchHandler)
+    //addCommand("search", searchHandler)
+    */
     
 
+
+    
+    
+    function searchHandler (args: Array<string>) : String | String [][]  {
+      //const stringArr1 = arr[1].toString
+      //const stringArr2 = arr[2].toString
+
+    
+      if ((args[1] === "2") && args[2] === "English") {
+        console.log(holdURL)
+        const result = mockSearch(holdURL, args[1]!, args[2]!);
+        props.setHistory([...props.history, result instanceof Array ? result[0]: result])
+        setCommandString('')
+      } else if ((args[1] == "3")  && (args[2] == "red")) {
+        const result = mockSearch(holdURL, args[1]!, args[2]!);
+        props.setHistory([...props.history, result instanceof Array ? result[0]: result])
+        setCommandString('')
+
+      }
+      return " ";
+  
+ 
+    }
+    addCommand("search", searchHandler)
+    
+
+    /** 
+    function searchHandler (column: string, value: string) : string {
+      const stringArr1 = arr[1].toString
+      const stringArr2 = arr[2].toString
+      
+       if ((args[1] === "2") && args[2] === "English") {
+        props.setHistory([...props.history, mockSearch(args[1]!, args[2]!)])
+        setCommandString('')
+       }
+      return ''
+      
+ 
+    }
+    */
+
+    
 
 
 
