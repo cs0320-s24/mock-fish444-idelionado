@@ -33,22 +33,22 @@ export function REPLInput(props : REPLInputProps) {
       const newMode = !props.mode
         setMode(newMode)
         setCommandString('')
-        return ""
+        return []
     }
     addCommand("mode", modeHandler)
 
-    function loadHandler (args: Array<string>) : String | String[][] {
+    function loadHandler (args: Array<string>) : String | String[][] | undefined {
       const newHoldURL = args[1]
         setHoldURL(newHoldURL)
         //setHoldURL(props.holdURL = arr[1])
         props.setHistory([...props.history,  "successfully loaded"])
         setCommandString('')
-        return "successfully loaded"
+        return []
       
     }
     addCommand("load_file", loadHandler)
 
-    function viewHandler (args: Array<string>) : String | String[][] {
+    function viewHandler (args: Array<string>) : String | String[][] | undefined {
       if (args.length == 1) {
         if (holdURL != "") {
           props.setHistory([...props.history, mockView(holdURL)])
@@ -57,7 +57,7 @@ export function REPLInput(props : REPLInputProps) {
           props.setHistory([...props.history, mockView("Did not load CSV")])
         }
       }
-      return ""
+      return []
       
  
     }
@@ -65,23 +65,53 @@ export function REPLInput(props : REPLInputProps) {
 
     
     
-    function searchHandler (args: Array<string>) : String | String[][] {
-      //const stringArr1 = arr[1].toString
-      //const stringArr2 = arr[2].toString
+    // function searchHandler (args: Array<string>) : String | String[][] {
+    //   //const stringArr1 = arr[1].toString
+    //   //const stringArr2 = arr[2].toString
       
-      if ((args[1] === "2") && args[2] === "English") {
-        props.setHistory([...props.history, mockSearch(args[1]!, args[2]!)])
-        setCommandString('')
-      }
-      return ''
+    //   if ((args[1] === "2") && args[2] === "English") {
+    //     props.setHistory([...props.history, mockSearch(args[1]!, args[2]!)])
+    //     setCommandString('')
+    //   }
+    //   return ''
       
  
-    }
-    addCommand("view", searchHandler)
+    // }
+    // addCommand("search", searchHandler)
     
 
 
+    function searchHandler (args: Array<string>) : String |String [][] | undefined {
+      //const stringArr1 = arr[1].toString
+      //const stringArr2 = arr[2].toString
 
+     // const value1 = args[1]!
+
+     //const [_, args[1], args[2]] = args; 
+
+     const[_,arg1,arg2] = args;
+
+     if(arg1 === "2" && arg2 === "English"){
+      const result = mockSearch(arg1, arg2)
+
+     if(Array.isArray(result)){
+      props.setHistory([...props.history, ...result])
+      setCommandString('');
+     }else{
+      props.setHistory([...props.history, result])
+     }
+
+     return []}
+      
+      // if ((arg1 === "2") && arg2 === "English") {
+      //   props.setHistory([...props.history, mockSearch[arg1, arg2]])
+      //   setCommandString('')
+      // }
+      return undefined
+      
+ 
+    }
+    addCommand("search", searchHandler)
 
     
 
@@ -94,6 +124,12 @@ export function REPLInput(props : REPLInputProps) {
       setCount(count+1);
 
       let arr = commandString.split(' ');
+
+      // if(["mode", "view", "search", "load_file"].includes(arr[0])){
+      //   const result = handleCommand(arr[0], arr);
+      
+
+      // }
 
       //commandString.split(/(\s+)/)
 
@@ -154,7 +190,7 @@ export function REPLInput(props : REPLInputProps) {
 
       
       if ((arr[0] === "mode") || (arr[0] == "view") || (arr[0] == "search") || (arr[0] === "load_file")) {
-        handleCommand(arr[0], arr)
+        const result = handleCommand(arr[0], arr);
       } else {
         props.setHistory([...props.history,  commandString])
         setCommandString('')

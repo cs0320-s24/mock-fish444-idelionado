@@ -1,4 +1,4 @@
-export function mockSearch(column: string, value: string){
+export function mockSearch(column: string | null, value: string | null){
   const map = new Map<string, any>();
   const data1 = [
     ["Name", "Age", "Major"],
@@ -35,9 +35,11 @@ export function mockSearch(column: string, value: string){
   if(column === null && value === null) {
     return "Error: No file loaded";
   } else if ((column == "2") && (value == "English")) {
-    return value1
+    return value1;
   } else if ((column  == "3") && (value == "red")) {
-    return value2
+    return value2;
+  }else{
+    return "Error: Incorrect column or value"
   }
     
 }
