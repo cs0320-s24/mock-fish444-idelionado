@@ -81,12 +81,14 @@ export function REPLInput(props : REPLInputProps) {
     
 
 
-    function searchHandler (args: Array<string>) : String |String [][]  {
+    function searchHandler (args: Array<string>) : String | String [][]  {
       //const stringArr1 = arr[1].toString
       //const stringArr2 = arr[2].toString
-      
+
+    
       if ((args[1] === "2") && args[2] === "English") {
-        props.setHistory([...props.history, mockSearch(args[1]!, args[2]!)])
+        const result = mockSearch(args[1]!, args[2]!);
+        props.setHistory([...props.history, result instanceof Array ? result[0]: result])
         setCommandString('')
       }
       return " ";
