@@ -108,6 +108,26 @@ test('after I input "load_file", page changes', async ({ page }) => {
 });
 
 
+test('after I input search url, output page changes', async ({ page }) => {
+  // CHANGED
+  await page.goto('http://localhost:8000/');
+  await page.getByLabel('Login').click();
+  await page.getByLabel('Command input').fill('load_file data/data1.csv');
+  await page.getByRole('button', {name: 'Submitted 0 times'}).click()
+
+  await page.getByLabel('Command input').click();
+  await page.getByLabel('Command input').fill('view');
+  await page.getByRole('button', {name: 'Submitted 1 times'}).click()
+
+  // you can use page.evaulate to grab variable content from the page for more complex assertions
+  const firstChild = await page.evaluate(() => {
+    const history = document.querySelector('.repl-history');
+    return history?.children[1]?.textContent;
+  });
+  expect(firstChild).toEqual("NameAgeMajorTom21EnglishSam20MathSally19Biology");
+});
+
+
 
 
 test('after I click the button, my command gets pushed', async ({ page }) => {

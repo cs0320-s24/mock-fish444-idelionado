@@ -1,4 +1,4 @@
-export function mockView(data: string, column: string, value: string){
+export function mockSearch(column: string, value: string){
   const map = new Map<string, any>();
   const data1 = [
     ["Name", "Age", "Major"],
@@ -32,15 +32,12 @@ export function mockView(data: string, column: string, value: string){
   map.set("data/data4.csv", data4);
   map.set("data/data5.csv", "Empty file");
 
-  if(data === null && column === null && value === null) {
+  if(column === null && value === null) {
     return "Error: No file loaded";
-  } else {
-    
+  } else if ((column == "2") && (value == "English")) {
+    return value1
+  } else if ((column  == "3") && (value == "red")) {
+    return value2
   }
-  
-  //const result = map.get(data);
-   // return result;
-
-  
-
+    
 }
