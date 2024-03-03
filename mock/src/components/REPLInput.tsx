@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import '../styles/main.css';
 import { ControlledInput } from './ControlledInput';
 import{ mockView } from './MockView';
+import { addCommand, handleCommand } from './Commands';
+import { mockSearch } from './MockSearchBasic';
 
 interface REPLInputProps{
   // TODO: Fill this with desired props... Maybe something to keep track of the submitted commands
@@ -27,6 +29,63 @@ export function REPLInput(props : REPLInputProps) {
 
     const [holdURL, setHoldURL] = useState<string>('');
 
+    function modeHandler (args: Array<string>) : String | String[][] {
+      const newMode = !props.mode
+        setMode(newMode)
+        setCommandString('')
+        return ""
+    }
+    addCommand("mode", modeHandler)
+
+    function loadHandler (args: Array<string>) : String | String[][] {
+      const newHoldURL = args[1]
+        setHoldURL(newHoldURL)
+        //setHoldURL(props.holdURL = arr[1])
+        props.setHistory([...props.history,  "successfully loaded"])
+        setCommandString('')
+        return "successfully loaded"
+      
+    }
+    addCommand("load_file", loadHandler)
+
+    function viewHandler (args: Array<string>) : String | String[][] {
+      if (args.length == 1) {
+        if (holdURL != "") {
+          props.setHistory([...props.history, mockView(holdURL)])
+          setCommandString('')
+        } else {
+          props.setHistory([...props.history, mockView("Did not load CSV")])
+        }
+      }
+      return ""
+      
+ 
+    }
+    addCommand("view", viewHandler)
+
+    
+    
+    function searchHandler (args: Array<string>) : String | String[][] {
+      //const stringArr1 = arr[1].toString
+      //const stringArr2 = arr[2].toString
+      
+      if ((args[1] === "2") && args[2] === "English") {
+        props.setHistory([...props.history, mockSearch(args[1]!, args[2]!)])
+        setCommandString('')
+      }
+      return ''
+      
+ 
+    }
+    addCommand("view", searchHandler)
+    
+
+
+
+
+    
+
+    
     
     // This function is triggered when the button is clicked.
     function handleSubmit(commandString:string) {
@@ -42,6 +101,8 @@ export function REPLInput(props : REPLInputProps) {
       //commandString === "mode"
       //commandString === "load_file"
 
+      
+      /** 
       if ((arr[0] === "mode")) {
         console.log("test")
         const newMode = !props.mode
@@ -83,21 +144,20 @@ export function REPLInput(props : REPLInputProps) {
           setCommandString('')
 
         }
-        
-      
-      //else if(arr[0] == "view"){
-        //props.setHistory([...props.history, mockView(arr[1])])
-        //setCommandString('')
-
-
-        //mockView("data/data1.csv")
-        //mockView(commandString)
-        //splice 
       
 
       } else {
           props.setHistory([...props.history,  commandString])
           setCommandString('')
+      }
+      */
+
+      
+      if ((arr[0] === "mode") || (arr[0] == "view") || (arr[0] == "search") || (arr[0] === "load_file")) {
+        handleCommand(arr[0], arr)
+      } else {
+        props.setHistory([...props.history,  commandString])
+        setCommandString('')
       }
         
     }

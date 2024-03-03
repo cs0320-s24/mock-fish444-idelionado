@@ -19,6 +19,11 @@ export default function REPL() {
   const [history, setHistory] = useState<string[]>([])
 
   const [mode, setMode] = useState<Boolean>(true)
+
+  const [sharedData, setShareData] = useState<string[][]>([])
+
+
+
   
 
   return (
