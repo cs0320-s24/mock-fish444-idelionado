@@ -6,5 +6,5 @@
  * *NOT* contain the command-name prefix.
  */
 export interface REPLFunction{
-  (args: Array<string>): String|String[][] | undefined
+  (args: Array<string>): String|String[][] 
 }
