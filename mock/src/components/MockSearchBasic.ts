@@ -32,12 +32,18 @@ export function mockSearch(file: string | null, column: string | null, value: st
   map.set("data/data4.csv", data4);
   map.set("data/data5.csv", "Empty file");
 
+
+  /**
+   * logic for mock search
+   */
   if((file === null) || (column === null) || (value === null)) {
     return "Error: No file loaded";
   } else if ((file == "data/data1.csv")  && (column == "2") && (value == "English")) {
-    return value1;
+    console.log(value1)
+    //return value1;
+    return [value1]
   } else if ((file == "data/data2.csv") && (column  == "3") && (value == "red")) {
-    return value2;
+    return [value2]
   }else{
     return "Error: Incorrect column or value"
   }

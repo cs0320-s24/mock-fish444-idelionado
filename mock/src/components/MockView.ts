@@ -29,6 +29,10 @@ export function mockView(data: string){
   map.set("data/data4.csv", data4);
   map.set("data/data5.csv", "Empty file");
 
+
+  /**
+   * logic for view
+   */
   if(data === null){
     return "Error: No file loaded";
   } else {

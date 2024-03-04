@@ -29,6 +29,12 @@ export function REPLInput(props : REPLInputProps) {
 
     const [holdURL, setHoldURL] = useState<string>('');
 
+
+    /**
+     * function that contains the mode logic and goes to the command map
+     * @param args contains the command line
+     * @returns empty list
+     */
     function modeHandler (args: Array<string>) : String | String[][] {
       const newMode = !props.mode
         setMode(newMode)
@@ -37,6 +43,12 @@ export function REPLInput(props : REPLInputProps) {
     }
     addCommand("mode", modeHandler)
 
+
+    /**
+     * function that has the load logic in it and gets inputted to the command map
+     * @param args have the command line in it
+     * @returns empty list
+     */
     function loadHandler (args: Array<string>) : String | String[][] {
       const newHoldURL = args[1]
         setHoldURL(newHoldURL)
@@ -63,31 +75,13 @@ export function REPLInput(props : REPLInputProps) {
     }
     addCommand("view", viewHandler)
 
-    
-    /** 
-    function searchHandler (args: Array<string>) : String | String[][] {
-      const stringArr1 = arr[1].toString
-      const stringArr2 = arr[2].toString
       
-       if ((args[1] === "2") && args[2] === "English") {
-        props.setHistory([...props.history, mockSearch(args[1]!, args[2]!)])
-        setCommandString('')
-       }
-      return ''
-      
- 
-    }
-    //addCommand("search", searchHandler)
-    */
-    
-
-
-    
-    
+    /**
+     * function contains the logic of search and inputs into the command map
+     * @param args contains the command line
+     * @returns 
+     */
     function searchHandler (args: Array<string>) : String | String [][]  {
-      //const stringArr1 = arr[1].toString
-      //const stringArr2 = arr[2].toString
-
     
       if ((args[1] === "2") && args[2] === "English") {
         console.log(holdURL)
@@ -107,28 +101,10 @@ export function REPLInput(props : REPLInputProps) {
     addCommand("search", searchHandler)
     
 
-    /** 
-    function searchHandler (column: string, value: string) : string {
-      const stringArr1 = arr[1].toString
-      const stringArr2 = arr[2].toString
-      
-       if ((args[1] === "2") && args[2] === "English") {
-        props.setHistory([...props.history, mockSearch(args[1]!, args[2]!)])
-        setCommandString('')
-       }
-      return ''
-      
- 
-    }
-    */
 
     
-
-
-
-    
-
-    
+  
+  
     
     // This function is triggered when the button is clicked.
     function handleSubmit(commandString:string) {
@@ -138,62 +114,6 @@ export function REPLInput(props : REPLInputProps) {
 
       let arr = commandString.split(' ');
 
-      //commandString.split(/(\s+)/)
-
-
-      //commandString === "mode"
-      //commandString === "load_file"
-
-      
-      /** 
-      if ((arr[0] === "mode")) {
-        console.log("test")
-        const newMode = !props.mode
-        setMode(newMode)
-        setCommandString('')
-        return newMode
-      } else if (arr[0] === "load_file") {
-        //props.holdURL = arr[1]
-        const newHoldURL = arr[1]
-        setHoldURL(newHoldURL)
-        //setHoldURL(props.holdURL = arr[1])
-        console.log("test load")
-        console.log(holdURL)
-        props.setHistory([...props.history,  "successfully loaded"])
-        setCommandString('')
-
-      }else if(arr[0] == "view") {
-        if (arr.length == 1) {
-          console.log("array is length 1")
-          if (holdURL != "") {
-            console.log("does just view work")
-            console.log(holdURL)
-            props.setHistory([...props.history, mockView(holdURL)])
-            setCommandString('')
-          } else {
-            props.setHistory([...props.history, mockView("Did not load CSV")])
-          }
-          }
-
-        if (arr[1] != holdURL) {
-          console.log("does this print")
-          console.log(arr[1])
-          props.setHistory([...props.history, mockView(arr[1])])
-          //props.setHistory([...props.history, "doea view work"])
-          setCommandString('')
-        } else {
-          console.log("should print url2")
-          props.setHistory([...props.history, mockView(holdURL)])
-          setCommandString('')
-
-        }
-      
-
-      } else {
-          props.setHistory([...props.history,  commandString])
-          setCommandString('')
-      }
-      */
 
       
       if ((arr[0] === "mode") || (arr[0] == "view") || (arr[0] == "search") || (arr[0] === "load_file")) {
