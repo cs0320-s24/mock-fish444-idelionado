@@ -26,24 +26,20 @@ export function mockSearch(file: string | null, column: string | null, value: st
   const value1 = ["Tom", "21", "English"]
   const value2 = ["cherries", "red", "$3.00"]
 
+  const value1arr = [value]
+
   map.set("data/data1.csv", data1);
   map.set("data/data2.csv", data2);
   map.set("data/data3.csv", data3);
   map.set("data/data4.csv", data4);
   map.set("data/data5.csv", "Empty file");
 
-
-  /**
-   * logic for mock search
-   */
   if((file === null) || (column === null) || (value === null)) {
     return "Error: No file loaded";
   } else if ((file == "data/data1.csv")  && (column == "2") && (value == "English")) {
-    console.log(value1)
-    //return value1;
-    return [value1]
+    return [value1];
   } else if ((file == "data/data2.csv") && (column  == "3") && (value == "red")) {
-    return [value2]
+    return [value2];
   }else{
     return "Error: Incorrect column or value"
   }

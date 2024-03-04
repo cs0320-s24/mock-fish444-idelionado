@@ -13,8 +13,6 @@ interface REPLInputProps{
   //brief is true
   mode: true
 
-  
-
 
   
 }
@@ -31,12 +29,6 @@ export function REPLInput(props : REPLInputProps) {
 
     const [holdURL, setHoldURL] = useState<string>('');
 
-
-    /**
-     * function that contains the mode logic and goes to the command map
-     * @param args contains the command line
-     * @returns empty list
-     */
     function modeHandler (args: Array<string>) : String | String[][] {
       const newMode = !props.mode
         setMode(newMode)
@@ -45,12 +37,6 @@ export function REPLInput(props : REPLInputProps) {
     }
     addCommand("mode", modeHandler)
 
-
-    /**
-     * function that has the load logic in it and gets inputted to the command map
-     * @param args have the command line in it
-     * @returns empty list
-     */
     function loadHandler (args: Array<string>) : String | String[][] {
       const newHoldURL = args[1]
         setHoldURL(newHoldURL)
@@ -76,13 +62,8 @@ export function REPLInput(props : REPLInputProps) {
  
     }
     addCommand("view", viewHandler)
-
-      
-    /**
-     * function contains the logic of search and inputs into the command map
-     * @param args contains the command line
-     * @returns 
-     */
+  
+    
     function searchHandler (args: Array<string>) : String | String [][]  {
     
       if ((args[1] === "2") && args[2] === "English") {
@@ -102,11 +83,7 @@ export function REPLInput(props : REPLInputProps) {
     }
     addCommand("search", searchHandler)
     
-
-
     
-  
-  
     
     // This function is triggered when the button is clicked.
     function handleSubmit(commandString:string) {
@@ -116,6 +93,7 @@ export function REPLInput(props : REPLInputProps) {
 
       let arr = commandString.split(' ');
 
+    
 
       
       if ((arr[0] === "mode") || (arr[0] == "view") || (arr[0] == "search") || (arr[0] === "load_file")) {
